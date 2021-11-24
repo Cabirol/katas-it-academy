@@ -12,6 +12,9 @@ segon = 2;
 
 // TODO: aquí el teu codi
 
+primer = segon;
+segon = primer;
+
 console.log(primer,segon);  // ha de mostrar 2 1
 
 
@@ -23,7 +26,9 @@ console.log("----------------- Exercicis de funcions ---------------");
 // exercici 2: defineix una funció psicologo() que et pregunti "Com estàs?" al executar-la
 
 // TODO: aquí la definició de psicolog() 
-
+function psicologo(){
+    console.log("Com estàs?");
+}
 psicologo();
 
 
@@ -31,7 +36,9 @@ psicologo();
 // quan li introduim com a paràmentre "la pizza"
 
 // TODO: aquí la definició de pregunta() 
-
+function pregunta(_menjar){
+    console.log(`T'agrada ${_menjar}?`);
+}
 pregunta("la pizza");
 
 
@@ -39,7 +46,9 @@ pregunta("la pizza");
 // quan li introduim com a paràmentre "la pizza"
 
 // TODO: aquí la definició de pregunta2() 
-
+function pregunta2(_menjar){
+    return ("T'agrada "+_menjar);
+}
 console.log(pregunta2("la pizza") + " amb piña?");
 
 
@@ -49,8 +58,13 @@ console.log(pregunta2("la pizza") + " amb piña?");
 var m3 = 8;
 
 // TODO: aquí les definicions de metresCubicsALitres() i mostrarSolució() 
-
-mostrarSolució();
+function metresCubicsALitres(_metres3){
+    return _metres3*1000;
+}
+function mostrarSolució(_m3){
+    console.log(`${_m3} metres cúbics son ${metresCubicsALitres(_m3)} litres.`);
+}
+mostrarSolució(m3);
 
 
 // exercici 6: defineix dues funcions afegirDiners() i gastarDiners() que sumi/resti a una variable externa el valor
@@ -59,7 +73,14 @@ mostrarSolució();
 var diners = 0;
 
 // TODO: definició de afegirDiners() i gastarDiners() 
-
+function afegirDiners(_diners){
+    diners = diners + _diners
+    return diners;
+}
+function gastarDiners(_diners){
+    diners = diners - _diners;
+    return diners;
+}
 afegirDiners(20);
 gastarDiners(15);
 afegirDiners(40);
@@ -76,10 +97,14 @@ console.log("----------------- Exercicis de condicionals ---------------");
 // exercici 7: fes un diàleg que et demani la talla de samarreta que vols comprar (S, M, L, XL) i et digui per la consola
 // quina talla has sel·leccionat i t'avisi si sel·lecciones una talla que no és vàlida
 
-var talla = prompt("Aquí el missatge del prompt")  // TODO: editar el missatge del prompt()
+var talla = prompt("Quina talla de samarreta vols comprar? Talles disponibles: S, M, L, XL");  // TODO: editar el missatge del prompt()
 
 // TODO: estructura condicional que digui per la consola la talla escollida
-
+if (talla == 'S' ||talla == 'M'||talla == 'L'||talla == 'XL'){
+    console.log("Has demanat la talla "+talla);
+}else{
+    console.log("La talla no és vàlida");
+}
 
 // exercici 8: defineix una funció amb modes que pugui calcular l'area o el perímetre d'un cercle i et faci console.log()
 // de la cosa calculada
@@ -87,6 +112,15 @@ var radi = 5;
 var mode = "P"; // "P" pel perímentre o "A" per l'àrea
 
 // TODO: defineix la funció cercle amb dos modes
+function cercle(_radi, _mode){
+    if(_mode="P"){
+        console.log ("El perímetre del cercle és " + 2*Math.PI*_radi);
+    }else if(_mode="A"){
+        console.log ("L'àrea del cercle és " + Math.PI*_radi*_radi);
+    }else{
+        console.log("Els modes només son 'P' o 'A'");
+    }
+}
 
 cercle(radi, mode);
 
@@ -97,6 +131,9 @@ var costat = 3;
 var costats = 5;
 
 // TODO: defineix la funció poligon()
+function poligon(_c, _n){
+    console.log ("El perímetre del polígon és " + _n*_c + " i l'àrea és "+ _n*_c*_c/(4*Math.tan(Math.PI/_n)));
+}
 
 poligon(costat, costats);
 
@@ -107,6 +144,27 @@ poligon(costat, costats);
 // amb tota la informació per pintar-la en un console.log()
 
 // TODO: defineix la funció botiga()
+function botiga(){
+    var item = prompt("Quin item vols?: samarreta, pantaló o barret.");
+    if(item=="barret"){
+
+        var tipus = prompt("Quin tipus vols?: copa, pirata, gorra o llana.");
+        if(!(tipus=="copa"||tipus=="pirata"||tipus=="gorra"||tipus=="llana")) return "Aquest tipus no està disponible.";
+        return "Has demanat un "+item+" de tipus "+tipus;
+
+    }else if(item=="pantaló"||item=="samarreta"){
+
+        var color = prompt("Quin color vols?");
+        var talla_ = prompt("Quina talla vols? S, M, L o XL");
+        if (!(talla == 'S' ||talla == 'M'||talla == 'L'||talla == 'XL')) return "Aquesta talla no és vàlida";
+        if (colorTalla=="Aquesta talla no és vàlida") return colorTalla;
+
+    }else{
+
+        return "Aquest item no és samarreta, pantaló o barret."
+    }
+    return "Has demanat un " + item + " de color "+ colorTalla[0]+ " i talla "+colorTalla[1];
+}
 
 var carrito = botiga();
 
