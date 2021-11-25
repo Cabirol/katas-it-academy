@@ -11,9 +11,9 @@ primer = 1;
 segon = 2;
 
 // TODO: aquí el teu codi
-
+var tercer = primer;
 primer = segon;
-segon = primer;
+segon = tercer;
 
 console.log(primer,segon);  // ha de mostrar 2 1
 
